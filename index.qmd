@@ -14,7 +14,7 @@ about:
       text: Resumé
       href: Bartkowiak Resume.pdf
     - icon: github
-      text: GithHub
+      text: GitHub
       href: https://github.com/mbartkowiak03/mbartkowiak03.github.io
     - icon: mailbox
       text: Email
