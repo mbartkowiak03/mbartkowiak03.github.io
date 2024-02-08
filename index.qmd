@@ -12,10 +12,10 @@ about:
       href: https://www.linkedin.com/in/miranda-bartkowiak/
     - icon: file-earmark-pdf
       text: Resumé
-    - icon: github
-      text: Github
-      href: https://github.com/mbartkowiak03/mbartkowiak03.github.io
       href: Bartkowiak Resume.pdf
+    - icon: github
+      text: GithHub
+      href: https://github.com/mbartkowiak03/mbartkowiak03.github.io
     - icon: mailbox
       text: Email
       href: mailto:mgb101@geneseo.edu
