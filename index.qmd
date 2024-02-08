@@ -1,5 +1,5 @@
 ---
-title: "YOUR NAME" 
+title: "Miranda Bartkowiak" 
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: img/profile.png
@@ -9,33 +9,32 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
-    - icon: instagram
-      text: Instagram
-      href: https://instagram.com
-    - icon: github
-      text: GitHub
-      href: https://github.com
+      href: https://www.linkedin.com/in/miranda-bartkowiak/
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+    - icon: github
+      text: Github
+      href: https://github.com/mbartkowiak03/mbartkowiak03.github.io
+      href: Bartkowiak Resume.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:mgb101@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Hello! I am Miranda Bartkowiak and I major in Economics and minor in Mathematics at SUNY Geneseo. When I am not working on my coursework, I enjoy spending time listening to music and playing with my dog.
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Business Administration 
+B.A. in Economics | Aug 2021 - Dec 2024 <br>
+Minor in Mathematics 
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+Math Learning Center | Mathematics Tutor | Sept 2023 - Present
+
+School of Business | Intermediate Microeconomics Tutor | Feb 2023 - May 2023
 
 

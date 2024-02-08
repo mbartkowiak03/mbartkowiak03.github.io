@@ -3,16 +3,22 @@ project:
   output-dir: "."
 
 website:
-  title: "YOUR NAME"
+  title: "Miranda Bartkowiak"
   navbar:
     pinned: true
     left:
       - text: Project
         href: project.qmd
+      - text: Python Data Analysis
+        menu:
+          - text: Python Basics
+            href: basic-python-intro.ipynb
+          - text: Python Basics with qmd
+            href: danl-210-quarto-reticulate.qmd
       - text: Blog
         href: blog-listing.qmd
-  page-footer: 
-    center: "Powered with GitHub and Quarto<br>© YOUR NAME, 2023"
+  page-footer:
+    center: "Powered with GitHub and Quarto<br>© Miranda Bartkowiak, 2023"
 
 format:
   html:
