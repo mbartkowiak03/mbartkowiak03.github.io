@@ -1,14 +1,11 @@
 {
-  "hash": "e7e71515f24eabf1cfd77c36b6ab0617",
+  "hash": "3ed3a4fb508833ca5b86d1342b016754",
   "result": {
-    "markdown": "---\ntitle: \"Post With Code\"\nauthor: \"YOUR NAME\"\ndate: \"2023-10-30\"\ncategories: [news, code, analysis]\nimage: \"image.jpg\"\n---\n\n\nThis is a post with executable code with no space in the folder name.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n\n![](image.jpg)",
-    "supporting": [],
-    "filters": [
-      "rmarkdown/pagebreak.lua"
+    "markdown": "---\ntitle: \"Python Basics\"\nauthor: \"Miranda Bartkowiak\"\ndate: \"2-17-2024\"\ncategories: [introduction, code, analysis]\nimage: \"python.jpg\"\n---\n\n![](python.jpg)\n\nThis is a blog post about the basics of Python we learned in our first few lectures. \n\n## Printing\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\n#we can print anything with print()\n\nprint(\"Let's learn Python together:)\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nLet's learn Python together:)\n```\n:::\n:::\n\n\n## Variables and Data Types\n\nIn Python, there are different variables and data types that affect our code in different ways.\n\nFor example a few below are integers, string, and float variables:\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\ninteger_variable = 25\nstring_variable = 'Hello'\nfloat_variable = 13.5\n```\n:::\n\n\n## Assignment and Mathematical Operations\n\nTo assign something in Python we use \"=\"\nAdditionally, we can use Python to compute mathematical expressions\n\n::: {.cell execution_count=3}\n``` {.python .cell-code}\nx = 32\n\n#once we have stored x we can use it for other things like math\ny = x-17\nprint(y)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n15\n```\n:::\n:::\n\n\nPython can do a lot more math than just adding and subtracting.\n\n::: {.cell execution_count=4}\n``` {.python .cell-code}\n2**5/ (7*(4-2**3))\n```\n\n::: {.cell-output .cell-output-display execution_count=27}\n```\n-1.1428571428571428\n```\n:::\n:::\n\n\n## Booleans and Conditions\n\nBoolean data has either True or False value\n\nFor example, \n\"==\" evaluates whether the objects on ach side are the same\n\n::: {.cell execution_count=5}\n``` {.python .cell-code}\n10 == 20 \n#this will return false since 10 is not equal to 20\n```\n\n::: {.cell-output .cell-output-display execution_count=28}\n```\nFalse\n```\n:::\n:::\n\n\n::: {.cell execution_count=6}\n``` {.python .cell-code}\n20 == '20' \n#this will return false since they are different variable types\n```\n\n::: {.cell-output .cell-output-display execution_count=29}\n```\nFalse\n```\n:::\n:::\n\n\nThere is a lot more than can be done with True and False values later on.\n\n## Lists and Dictionaries\n\nA list is a collection which is ordered and changeable.\n\nA dictionary is a collection which is unordered, changeable and indexed.\n\n::: {.cell execution_count=7}\n``` {.python .cell-code}\n# An example of a list\nmy_list = ['TV', 'plant', 'desk']\n\n# A dictionary example:\nmy_dict = {'name': 'Miranda', 'age': 20}\n```\n:::\n\n\n## Importing\n\nWe can import packages to aid us with our coding\n\n::: {.cell execution_count=8}\n``` {.python .cell-code}\n#import pandas as pd\n#!pip install itables\n#from itables import init_notebook_mode\n#from itables import show\n```\n:::\n\n\n## More to Come\n\nThis is just a short blog post about the basics of Python. Once you master the basics then you can get to the many things that were not mentioned in this blog post like if statements, for loops, functions, and more. As you learn more, keep in mind that Python is a skill that takes a lot of practice!\n\n",
+    "supporting": [
+      "index_files"
     ],
-    "includes": {},
-    "engineDependencies": {},
-    "preserve": {},
-    "postProcess": true
+    "filters": [],
+    "includes": {}
   }
 }

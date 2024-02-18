@@ -14,7 +14,7 @@ This is a blog post about the basics of Python we learned in our first few lectu
 ```{python}
 #we can print anything with print()
 
-print("Let's learn Python together!")
+print("Let's learn Python together:)")
 ```
 
 ## Variables and Data Types
@@ -45,7 +45,8 @@ print(y)
 Python can do a lot more math than just adding and subtracting.
 
 ```{python}
-2**5/ (7*(4-2**3)
+2**5/ (7*(4-2**3))
+
 ```
 
 
@@ -60,11 +61,14 @@ For example,
 ```{python}
 10 == 20 
 #this will return false since 10 is not equal to 20
+```
+
+```{python}
 20 == '20' 
 #this will return false since they are different variable types
 ```
 
-There is a lot more than can be done with True and False values later on!
+There is a lot more than can be done with True and False values later on.
 
 ## Lists and Dictionaries
 
@@ -87,10 +91,10 @@ We can import packages to aid us with our coding
 
 ```{python}
 
-import pandas as pd
-!pip install itables
-from itables import init_notebook_mode
-from itables import show
+#import pandas as pd
+#!pip install itables
+#from itables import init_notebook_mode
+#from itables import show
 ```
 
 ## More to Come

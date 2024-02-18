@@ -46,7 +46,7 @@
     "href": "blog-listing.html",
     "title": "Insightful Analytics",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\n\nFeb 17, 2024\n\n\nMiranda Bartkowiak\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "danl-210-quarto-reticulate.html",
@@ -102,7 +102,7 @@
     "href": "index.html",
     "title": "Miranda Bartkowiak",
     "section": "",
-    "text": "Hello! I am Miranda Bartkowiak and I major in Economics and minor in Mathematics at SUNY Geneseo. When I am not working on my coursework, I enjoy spending time listening to music and playing with my dog."
+    "text": "Hello! I am Miranda Bartkowiak and I major in Economics and minor in Mathematics at SUNY Geneseo. I am currently working on my own economics research and I am also the TA for Differential Equations. When I am not working on my coursework, I enjoy spending time listening to music and playing with my dog."
   },
   {
     "objectID": "index.html#education",
@@ -163,9 +163,9 @@
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "title": "Python Basics",
     "section": "",
-    "text": "This is a post with executable code with no space in the folder name.\n\n1 + 1\n\n[1] 2"
+    "text": "This is a blog post about the basics of Python we learned in our first few lectures."
   },
   {
     "objectID": "posts/starwars/starwars_df.html",
@@ -215,5 +215,54 @@
     "title": "DANL Project",
     "section": "2.2 MPG and a Type of Cars",
     "text": "2.2 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#printing",
+    "href": "posts/post-with-code/index.html#printing",
+    "title": "Python Basics",
+    "section": "Printing",
+    "text": "Printing\n\n#we can print anything with print()\n\nprint(\"Let's learn Python together:)\")\n\nLet's learn Python together:)"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#variables-and-data-types",
+    "href": "posts/post-with-code/index.html#variables-and-data-types",
+    "title": "Python Basics",
+    "section": "Variables and Data Types",
+    "text": "Variables and Data Types\nIn Python, there are different variables and data types that affect our code in different ways.\nFor example a few below are integers, string, and float variables:\n\ninteger_variable = 25\nstring_variable = 'Hello'\nfloat_variable = 13.5"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#assignment-and-mathematical-operations",
+    "href": "posts/post-with-code/index.html#assignment-and-mathematical-operations",
+    "title": "Python Basics",
+    "section": "Assignment and Mathematical Operations",
+    "text": "Assignment and Mathematical Operations\nTo assign something in Python we use “=” Additionally, we can use Python to compute mathematical expressions\n\nx = 32\n\n#once we have stored x we can use it for other things like math\ny = x-17\nprint(y)\n\n15\n\n\nPython can do a lot more math than just adding and subtracting.\n\n2**5/ (7*(4-2**3))\n\n-1.1428571428571428"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#booleans-and-conditions",
+    "href": "posts/post-with-code/index.html#booleans-and-conditions",
+    "title": "Python Basics",
+    "section": "Booleans and Conditions",
+    "text": "Booleans and Conditions\nBoolean data has either True or False value\nFor example, “==” evaluates whether the objects on ach side are the same\n\n10 == 20 \n#this will return false since 10 is not equal to 20\n\nFalse\n\n\n\n20 == '20' \n#this will return false since they are different variable types\n\nFalse\n\n\nThere is a lot more than can be done with True and False values later on."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#lists-and-dictionaries",
+    "href": "posts/post-with-code/index.html#lists-and-dictionaries",
+    "title": "Python Basics",
+    "section": "Lists and Dictionaries",
+    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# An example of a list\nmy_list = ['TV', 'plant', 'desk']\n\n# A dictionary example:\nmy_dict = {'name': 'Miranda', 'age': 20}"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#importing",
+    "href": "posts/post-with-code/index.html#importing",
+    "title": "Python Basics",
+    "section": "Importing",
+    "text": "Importing\nWe can import packages to aid us with our coding\n\n#import pandas as pd\n#!pip install itables\n#from itables import init_notebook_mode\n#from itables import show"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#more-to-come",
+    "href": "posts/post-with-code/index.html#more-to-come",
+    "title": "Python Basics",
+    "section": "More to Come",
+    "text": "More to Come\nThis is just a short blog post about the basics of Python. Once you master the basics then you can get to the many things that were not mentioned in this blog post like if statements, for loops, functions, and more. As you learn more, keep in mind that Python is a skill that takes a lot of practice!"
   }
 ]
