@@ -1,15 +1,98 @@
 ---
-title: "Post With Code"
-author: "YOUR NAME"
-date: "2023-10-30"
-categories: [news, code, analysis]
+title: "Python Basics"
+author: "Miranda Bartkowiak"
+date: "2-17-2024"
+categories: [introduction, code, analysis]
 image: "image.jpg"
 ---
+![](python.jpg)
 
-This is a post with executable code with no space in the folder name.
+This is a blog post about the basics of Python we learned in our first few lectures. 
 
-```{r}
-1 + 1
+## Printing
+
+```{python}
+#we can print anything with print()
+
+print("Let's learn Python together!")
 ```
 
-![](image.jpg)
+## Variables and Data Types
+
+In Python, there are different variables and data types that affect our code in different ways.
+
+For example a few below are integers, string, and float variables:
+
+```{python}
+integer_variable = 25
+string_variable = 'Hello'
+float_variable = 13.5
+
+```
+
+## Assignment and Mathematical Operations
+
+To assign something in Python we use "="
+Additionally, we can use Python to compute mathematical expressions
+```{python}
+x = 32
+
+#once we have stored x we can use it for other things like math
+y = x-17
+print(y)
+```
+
+Python can do a lot more math than just adding and subtracting.
+
+```{python}
+2**5/ (7*(4-2**3)
+```
+
+
+## Booleans and Conditions
+
+Boolean data has either True or False value
+
+For example, 
+"==" evaluates whether the objects on ach side are the same
+
+
+```{python}
+10 == 20 
+#this will return false since 10 is not equal to 20
+20 == '20' 
+#this will return false since they are different variable types
+```
+
+There is a lot more than can be done with True and False values later on!
+
+## Lists and Dictionaries
+
+A list is a collection which is ordered and changeable.
+
+A dictionary is a collection which is unordered, changeable and indexed.
+
+```{python}
+# An example of a list
+my_list = ['TV', 'plant', 'desk']
+
+# A dictionary example:
+my_dict = {'name': 'Miranda', 'age': 20}
+```
+
+
+## Importing
+
+We can import packages to aid us with our coding
+
+```{python}
+
+import pandas as pd
+!pip install itables
+from itables import init_notebook_mode
+from itables import show
+```
+
+## More to Come
+
+This is just a short blog post about the basics of Python. Once you master the basics then you can get to the many things that were not mentioned in this blog post like if statements, for loops, functions, and more. As you learn more, keep in mind that Python is a skill that takes a lot of practice!
