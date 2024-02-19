@@ -55,7 +55,7 @@ Python can do a lot more math than just adding and subtracting.
 Boolean data has either True or False value
 
 For example, 
-"==" evaluates whether the objects on ach side are the same
+"==" evaluates whether the objects on each side are the same
 
 
 ```{python}
