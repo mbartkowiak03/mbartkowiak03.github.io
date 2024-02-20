@@ -235,7 +235,7 @@
     "href": "posts/post-with-code/index.html#assignment-and-mathematical-operations",
     "title": "Python Basics",
     "section": "Assignment and Mathematical Operations",
-    "text": "Assignment and Mathematical Operations\nTo assign something in Python we use “=” Additionally, we can use Python to compute mathematical expressions\n\nx = 32\n\n#once we have stored x we can use it for other things like math\ny = x-17\nprint(y)\n\n15\n\n\nPython can do a lot more math than just adding and subtracting.\n\n2**5/ (7*(4-2**3))\n\n-1.1428571428571428"
+    "text": "Assignment and Mathematical Operations\nTo assign something in Python we use “=”\nAdditionally, we can use Python to compute mathematical expressions\n\nx = 32\n\n#once we have stored x we can use it for other things like math\ny = x-17\nprint(y)\n\n15\n\n\nPython can do a lot more math than just adding and subtracting.\n\n2**5/ (7*(4-2**3))\n\n-1.1428571428571428"
   },
   {
     "objectID": "posts/post-with-code/index.html#booleans-and-conditions",
@@ -249,7 +249,7 @@
     "href": "posts/post-with-code/index.html#lists-and-dictionaries",
     "title": "Python Basics",
     "section": "Lists and Dictionaries",
-    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# An example of a list\nmy_list = ['TV', 'plant', 'desk']\n\n# A dictionary example:\nmy_dict = {'name': 'Miranda', 'age': 20}"
+    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# An example of a list\nmy_list = ['TV', 'plant', 'desk']\n\n# A dictionary example:\nmy_dict = {'name': 'Miranda', 'age': 20}\n\n##For Loops\nA for loop executes a section of our code repeatedly.\n\nlist = [\"banana\", \"cherry\", \"orange\"]\n\nfor fruit in list:\n  print(fruit)\n\nbanana\ncherry\norange"
   },
   {
     "objectID": "posts/post-with-code/index.html#importing",
@@ -263,6 +263,13 @@
     "href": "posts/post-with-code/index.html#more-to-come",
     "title": "Python Basics",
     "section": "More to Come",
-    "text": "More to Come\nThis is just a short blog post about the basics of Python. Once you master the basics then you can get to the many things that were not mentioned in this blog post like if statements, for loops, functions, and more. As you learn more, keep in mind that Python is a skill that takes a lot of practice!"
+    "text": "More to Come\nThis is just a short blog post about the basics of Python. Once you master the basics then you can get to the many things not mentioned in this blog post like functions and data visualization. As you learn more, keep in mind that Python is a skill that takes a lot of practice!"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#if-statements",
+    "href": "posts/post-with-code/index.html#if-statements",
+    "title": "Python Basics",
+    "section": "If Statements",
+    "text": "If Statements\nWe can combine conditions with if statements to enact our code.\nHere is a simple example below,\n\nif x&lt;0:\n  print(\"Your number is negative\")\nelif x&gt;0:\n  print(\"Your number is positive\")\nelse:\n  print(\"Your number is 0\")\n\nYour number is positive"
   }
 ]

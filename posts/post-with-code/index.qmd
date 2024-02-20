@@ -33,6 +33,7 @@ float_variable = 13.5
 ## Assignment and Mathematical Operations
 
 To assign something in Python we use "="
+
 Additionally, we can use Python to compute mathematical expressions
 ```{python}
 x = 32
@@ -70,6 +71,22 @@ For example,
 
 There is a lot more than can be done with True and False values later on.
 
+
+## If Statements 
+
+We can combine conditions with if statements to enact our code.
+
+Here is a simple example below,
+
+```{python}
+if x<0:
+  print("Your number is negative")
+elif x>0:
+  print("Your number is positive")
+else:
+  print("Your number is 0")
+```
+
 ## Lists and Dictionaries
 
 A list is a collection which is ordered and changeable.
@@ -85,6 +102,17 @@ my_dict = {'name': 'Miranda', 'age': 20}
 ```
 
 
+##For Loops
+
+A for loop executes a section of our code repeatedly.
+
+```{python}
+list = ["banana", "cherry", "orange"]
+
+for fruit in list:
+  print(fruit)
+```
+
 ## Importing
 
 We can import packages to aid us with our coding
@@ -97,6 +125,7 @@ We can import packages to aid us with our coding
 #from itables import show
 ```
 
+
 ## More to Come
 
-This is just a short blog post about the basics of Python. Once you master the basics then you can get to the many things that were not mentioned in this blog post like if statements, for loops, functions, and more. As you learn more, keep in mind that Python is a skill that takes a lot of practice!
+This is just a short blog post about the basics of Python. Once you master the basics then you can get to the many things not mentioned in this blog post like functions and data visualization. As you learn more, keep in mind that Python is a skill that takes a lot of practice!
