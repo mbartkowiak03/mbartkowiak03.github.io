@@ -102,7 +102,7 @@ my_dict = {'name': 'Miranda', 'age': 20}
 ```
 
 
-##For Loops
+## For Loops
 
 A for loop executes a section of our code repeatedly.
 

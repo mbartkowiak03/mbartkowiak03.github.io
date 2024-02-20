@@ -249,7 +249,7 @@
     "href": "posts/post-with-code/index.html#lists-and-dictionaries",
     "title": "Python Basics",
     "section": "Lists and Dictionaries",
-    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# An example of a list\nmy_list = ['TV', 'plant', 'desk']\n\n# A dictionary example:\nmy_dict = {'name': 'Miranda', 'age': 20}\n\n##For Loops\nA for loop executes a section of our code repeatedly.\n\nlist = [\"banana\", \"cherry\", \"orange\"]\n\nfor fruit in list:\n  print(fruit)\n\nbanana\ncherry\norange"
+    "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# An example of a list\nmy_list = ['TV', 'plant', 'desk']\n\n# A dictionary example:\nmy_dict = {'name': 'Miranda', 'age': 20}"
   },
   {
     "objectID": "posts/post-with-code/index.html#importing",
@@ -271,5 +271,12 @@
     "title": "Python Basics",
     "section": "If Statements",
     "text": "If Statements\nWe can combine conditions with if statements to enact our code.\nHere is a simple example below,\n\nif x&lt;0:\n  print(\"Your number is negative\")\nelif x&gt;0:\n  print(\"Your number is positive\")\nelse:\n  print(\"Your number is 0\")\n\nYour number is positive"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#for-loops",
+    "href": "posts/post-with-code/index.html#for-loops",
+    "title": "Python Basics",
+    "section": "For Loops",
+    "text": "For Loops\nA for loop executes a section of our code repeatedly.\n\nlist = [\"banana\", \"cherry\", \"orange\"]\n\nfor fruit in list:\n  print(fruit)\n\nbanana\ncherry\norange"
   }
 ]
