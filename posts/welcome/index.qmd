@@ -22,22 +22,22 @@ The following describes the variables in the `spotify` DataFrame.
 - `pid`
 playlist ID; unique ID for playlist
 
--`playlist_name`
+- `playlist_name`
 a name of playlist
 
--`pos`
+- `pos`
 a position of the track within a playlist (starting from 0)
 
--`artist_name`
+- `artist_name`
 name of the track’s primary artist
 
--`track_name`
+- `track_name`
 name of the track
 
--`duration_ms`
+- `duration_ms`
 duration of the track in milliseconds
 
--`album_name`
+- `album_name`
 name of the track’s album
 
 
@@ -51,7 +51,7 @@ spotify.nunique()
 
 ## Grouping
 
-We can use .groupby() to organize the data into groups that share a categorical variable. These groups can be sed for further analysis.
+We can use .groupby() to organize the data into groups that share a categorical variable. These groups can be used for further analysis.
 
 ```{python}
 playlists = spotify.groupby("playlist_name")
@@ -108,7 +108,7 @@ spotify.value_counts("artist_name")
 ```
 
 
-We can see that the top artist is Drake> However this could be because some of his songs appear multiple times across different playlists. To see if this is the case, we can find the number of unique songs by each artist.
+We can see that the top artist is Drake. However this could be because some of his songs appear multiple times across different playlists. To see if this is the case, we can find the number of unique songs by each artist.
 
 ```{python}
 uniquesongs = spotify.drop_duplicates(subset = ["track_name"])
