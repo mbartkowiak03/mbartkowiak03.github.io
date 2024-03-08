@@ -1,12 +1,143 @@
 ---
-title: "Welcome To My Blog"
-author: "YOUR NAME"
-date: "2023-10-27"
-categories: [news]
+title: "Analyzing Spotify Dataframe"
+author: "Miranda Bartkowiak"
+date: "2024-03-07"
+categories: [data analysis, spotify]
+image: "spotify.jpg"
 ---
 
-This is the first post in a Quarto blog. Welcome!
+This is a blog post analyzing a Spotify DataFrame through methods like counting, sorting, indexing, and filtering.
 
-![](thumbnail.jpg)
+## Loading the DataFrame
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+```{python}
+import pandas as pd
+spotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')
+```
+
+## Variable Description for `spotify` DataFrame
+
+The following describes the variables in the `spotify` DataFrame.
+
+- `pid`
+playlist ID; unique ID for playlist
+
+-`playlist_name`
+a name of playlist
+
+-`pos`
+a position of the track within a playlist (starting from 0)
+
+-`artist_name`
+name of the track’s primary artist
+
+-`track_name`
+name of the track
+
+-`duration_ms`
+duration of the track in milliseconds
+
+-`album_name`
+name of the track’s album
+
+
+## Initial Characteristics
+
+We can use describe() and nunique() to understand a bit more about the DataFrame.
+```{python}
+spotify.describe()
+spotify.nunique()
+```
+
+## Grouping
+
+We can use .groupby() to organize the data into groups that share a categorical variable. These groups can be sed for further analysis.
+
+```{python}
+playlists = spotify.groupby("playlist_name")
+#grouping by playlist name
+playlists.groups.keys()
+#this returns all of the playlist names
+
+#len(playlists)
+  #this tells us there are 2184 playlists (we could tell this from nunique() earlier)
+```
+
+## Altering and Sorting
+
+We can add new variables by transforming existing variables. 
+Additionally, we can sort our data with sort_values()
+```{python}
+spotify["duration_min"] = spotify['duration_ms']/60000
+length = spotify.sort_values('duration_min', ascending = False)
+#this sorts the songs by duration in minutes in descending order
+```
+
+## Setting an Index and Dropping Observations
+
+From before, we can see that the highest duration "songs" are all in the playlist Audiobooks. Since I would like to see what else has a high duration, I can set the playlist name as the index and drop the Audiobooks playlist from my DataFrame.
+
+```{python}
+no_audiobooks = (
+    length
+    .set_index("playlist_name")
+    .drop("Audiobooks")
+)
+no_audiobooks
+```
+
+
+Similarly, we can drop duplicate values with drop_duplicates(). Below I have found all unique songs under two minutes (using query ()) and have sorted them in descending order.
+
+```{python}
+shortsongs = spotify.drop_duplicates(subset = ["track_name"])
+shortsongs2 = (
+    shortsongs
+    .query("duration_min < 2 ")
+    .sort_values("duration_min", ascending = False)
+)
+shortsongs2
+```
+
+## Counting
+
+We can  use value_counts() to count the number of times a variable appears in a column (when specified)
+```{python}
+spotify.value_counts("album_name")
+spotify.value_counts("artist_name")
+```
+
+
+We can see that the top artist is Drake> However this could be because some of his songs appear multiple times across different playlists. To see if this is the case, we can find the number of unique songs by each artist.
+
+```{python}
+uniquesongs = spotify.drop_duplicates(subset = ["track_name"])
+uniquesongs.value_counts("artist_name")
+```
+
+From this, we actually see that The Beatles have the most unique songs across all of the playlists.
+
+## Analyzing a Specific Artist
+
+Combining all of these methods, we can observe a specific artist within this DataFrame. 
+
+```{python}
+TS = (
+    spotify
+    .set_index("artist_name")
+    .loc["Taylor Swift"]
+)
+TS
+#finding all the songs made by Taylor Swift
+TS["track_name"].value_counts()
+TS["album_name"].value_counts()
+#how many times each of her tracks/albums appear
+uniquetaylor = TS.drop_duplicates(subset = ("track_name"))
+uniquetaylor
+#len(uniquetaylor)
+  #how many Taylor Swift songs appear (63)
+```
+
+## Conclusion
+
+Evidently, a lot can be done to analyze DataFrames. This was just a short introduction to the many methods used in data analysis. 

@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="YOUR NAME">
-<meta name="dcterms.date" content="2023-10-27">
+<meta name="author" content="Miranda Bartkowiak">
+<meta name="dcterms.date" content="2024-03-07">
 
-<title>Miranda Bartkowiak - Welcome To My Blog</title>
+<title>Miranda Bartkowiak - Analyzing Spotify Dataframe</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -61,6 +95,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -118,9 +155,10 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Welcome To My Blog</h1>
+      <h1 class="title">Analyzing Spotify Dataframe</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">news</div>
+                <div class="quarto-category">data analysis</div>
+                <div class="quarto-category">spotify</div>
               </div>
                   </div>
   </div>
@@ -131,14 +169,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>YOUR NAME </p>
+               <p>Miranda Bartkowiak </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 27, 2023</p>
+        <p class="date">March 7, 2024</p>
       </div>
     </div>
     
@@ -156,11 +194,596 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+<p>This is a blog post analyzing a Spotify DataFrame through methods like counting, sorting, indexing, and filtering.</p>
+<section id="loading-the-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-dataframe">Loading the DataFrame</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spotify <span class="op">=</span> pd.read_csv(<span class="st">'https://bcdanl.github.io/data/spotify_all.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="variable-description-for-spotify-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="variable-description-for-spotify-dataframe">Variable Description for <code>spotify</code> DataFrame</h2>
+<p>The following describes the variables in the <code>spotify</code> DataFrame.</p>
+<ul>
+<li><code>pid</code> playlist ID; unique ID for playlist</li>
+</ul>
+<p>-<code>playlist_name</code> a name of playlist</p>
+<p>-<code>pos</code> a position of the track within a playlist (starting from 0)</p>
+<p>-<code>artist_name</code> name of the track’s primary artist</p>
+<p>-<code>track_name</code> name of the track</p>
+<p>-<code>duration_ms</code> duration of the track in milliseconds</p>
+<p>-<code>album_name</code> name of the track’s album</p>
+</section>
+<section id="initial-characteristics" class="level2">
+<h2 class="anchored" data-anchor-id="initial-characteristics">Initial Characteristics</h2>
+<p>We can use describe() and nunique() to understand a bit more about the DataFrame.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spotify.describe()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>spotify.nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>pid               2997
+playlist_name     2184
+pos                249
+artist_name      18866
+track_name       64115
+duration_ms      37910
+album_name       35497
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="grouping" class="level2">
+<h2 class="anchored" data-anchor-id="grouping">Grouping</h2>
+<p>We can use .groupby() to organize the data into groups that share a categorical variable. These groups can be sed for further analysis.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>playlists <span class="op">=</span> spotify.groupby(<span class="st">"playlist_name"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#grouping by playlist name</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>playlists.groups.keys()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#this returns all of the playlist names</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#len(playlists)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#this tells us there are 2184 playlists (we could tell this from nunique() earlier)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>dict_keys(['!Party', '#Relaxed', '#Workout', '#boostyourrun', '#chill', '#mood', '#tb', '#tbt', '( r e l a x )', '( ͡° ͜ʖ ͡°)', '((chris))', '(Guilty)', '*** good stuff', '*ant', '*feels*', '------', '...chill_out...', '...mind', '.15', '.::March::.', '.jams.', '// Drive', '//Pretty Little Liars//', '//new', '/chill', '000', '00s', '100', '11', '13.1', '14', '16', '1967', "1980's", "1990's", "2000's", '2000s', '2000s hits', '2000s r&amp;b', '2009', '2012', '2013', '2014', '2015', '2015 Top Tracks', '2016', '2016 MIX', '2017', '2017 Summer', '2017 spring', '2020', '21st Birthday!!!!', '22', '2K14', '2k', '2k17', '2pac', '3am', '4/20', '40th', '4AM', '4th of july', '50s/60s', '5K', '60s', "70's", '70/80', '70s', "80's", '80s', '80s Pop', '80s jams', '80s music', "90's", "90's Hits", "90's Jams", "90's R&amp;B", "90's country", "90's music", '90s', '90s Rock', '90s alternative', '90s baby', '90s hip hop', '90s hits', '&lt;3', '&lt;333', 'A Perfect Circle', 'AA', 'AAA', 'ACL', 'AHS', 'ALT', 'AM', "APRIL '17", 'ATL', 'Aaliyah', 'About Time', 'Accapella', 'Acoustic', 'Acoustics', 'Actual', 'Adoracion', 'Adventure Of A Lifetime', 'Afrikaans', 'Afrobeats', 'Afterparty', 'Alex', 'Alexia', 'All Country', 'All Good', 'All That Jazz', 'All the songs', 'All-Time Favorites', 'Alright', 'Alt', 'Alt Jams', 'Alternative', 'Alternative Mix', 'Alternative Rock', 'Alternative/Rock', 'Alternativo', 'Amber', 'America', 'Amy', 'Another', 'Antidote', 'April', 'April 2016', 'Arab', 'Ash', 'Ashley', 'Atlas', 'Audiobooks', 'August', 'Australia Day', 'Autumn 2017', 'Autumn Playlist', 'Autumnal', 'Aux', 'Awake', 'Awesome', 'Awesome Mix', 'Awesome Playlist', 'Awesome Sauce', 'Awesome mix vol. 1', 'Ayy', 'BANGAZ', 'BANGERZ', 'BBG', 'BBQ', 'BEAST MODE', 'BEST OF DISNEY', 'BEST SONGS EVER', 'BG', 'BK', 'BLAST from the PAST', 'BLUE', 'BOMB', 'BOOMIN', 'BOP', 'BSO', 'BUMP', 'BUST A MOVE', 'BW', 'Baby Driver', 'Baby Making', 'Baby Making Music', "Baby makin'", 'Baby shower', 'Bachata', 'Back in the day', 'Back to School', 'Bad and Boujee', 'Baes', 'Bailando', 'Baking', 'Ballads', 'Band Music', 'Banda', 'Bang Bang', 'Bang bang', 'Bangers', 'Bangerz', 'Banjo', 'Baseball', 'Basement', 'Bass.', 'Bassnectar', 'Bbq', 'Be Mine', 'Beach', 'Beach Music', 'Beach songs', 'Beachin', 'Bear', 'Beatles', 'Beats', 'Beautiful Things', 'Bed time', 'Belters', 'Best', 'Best EDM', 'Best Songs of 2016', 'Best mix', 'Best of 2016', 'Best songs', 'Bet', 'Bhangra', 'Birthday', 'Birthday Bash', 'Black', 'Black Beatles', 'Black Coffee', 'Black beats', 'Blackout', 'Blues', 'Blues Rock', 'Bo', 'Bonfire!!', 'Booty', 'Bossa Nova', 'Brandon', 'Brasileiras', 'Brazil', 'Break', 'Breakfast', 'Breaking Benjamin', 'Breakup Songs', 'Breezeblocks', 'Breezy', 'Brian', 'British Invasion', 'Britney', 'Britt', 'Broadway', 'Broadway Baby', 'Brown Eyed Girl', 'Bruno Mars', 'Bubbles', 'Buena Vista Social Club', 'Bug', 'Bump', "Bumpin'", 'Bus playlist', 'Bus ride', 'CARDIO', 'CD', 'CD1', 'CHANCE', 'CHILE', 'CHRISTMAS', 'CHRISTMAS MUSIC', 'CHRISTMASSSSS', 'CHiLl', 'CLASSICS', 'COUNTRY', 'CR', 'CUMBIAS', 'Cali', 'Calm', 'Calming Music', 'Calming songs', 'Calvin Harris', 'Camp', 'Camping', "Can't Get Enough", 'Canada', 'Canciones', 'Cancun', 'Car Party', 'Car Rides', 'Car mix', 'Cash', 'Catchy Songs', 'Ccm', 'Ceremony', 'Ceremony Music', 'Cha Cha', 'Chance', 'Chantaje', 'Check it out!', 'Chidas', 'Childhood Jams', 'Chill', 'Chill Alternative', 'Chill Music', 'Chill Out', 'Chill Out Music', 'Chill Rock', 'Chill Sesh', 'Chill Songs', 'Chill Vibes', 'Chill Worship', 'Chill Zone', 'Chill list', 'Chill music', 'Chill rap', 'Chillin', 'Chillout', 'Chills', 'Chilly', 'Chinese Songs', 'Chris', 'Christian', 'Christian Music', 'Christian Playlist', 'Christian Songs', 'Christian music', 'Christian songs', 'Christmas', 'Christmas 2016', 'Christmas :)', 'Christmas Favorites', 'Christmas Mix', 'Christmas Music', 'Christmas Party', 'Christmas Time', 'Christmas music', 'Christmas songs', 'Christmastime', 'Cinco De Mayo', 'Cinderella', 'Class', 'Classic', 'Classic Country', 'Classic Hip-Hop', 'Classic Music', 'Classic Rock', 'Classic country', 'Classical', 'Classical Study Music – Classical Study Music', 'Classical favorites', 'Classics', 'Closer', 'Cloudy Days', 'Club', 'Clubbin', 'Coachella 2017', 'Cocktail Hour', 'Cody', 'Coke Studio', 'Collaboration', 'Comedy', 'Congratulations', 'Cool Covers', 'Cool covers', 'Corridos', 'Corridos alterados', 'Counting Crows', 'Country', 'Country 1', 'Country Favorites', 'Country Lovin', 'Country Mix', 'Country Roads', 'Country Vibes', 'Country favorites', 'Country mix', 'Country summer', 'County', 'Covers', 'Crossfit', 'Cruisin', 'Cruising', 'Cruzin', 'Cumbias', 'Current', 'Current Mood', 'Current Rotation', 'Current jams', 'Currently', 'DA', 'DANCE', 'DC', 'DIEGO$', 'DISCOVER', 'DUB', 'Dad Rock', 'Dad!', 'Daddy Issues', 'Dance', 'Dance Club', 'Dance Dance', 'Dance mix', 'Dancehall', 'Dancing on my own', 'Dancy', 'Dark Side', 'Darty', 'Dat new new', 'Dave', 'David', 'Daze', 'Deb', 'December', 'December 2016', 'Deep Thoughts', 'Demons', 'Desperado', 'Dinner Party', 'Discover', 'Discovered', 'Disney', 'Disney Jams', 'Disney!', 'Disneyland', 'Dixie', 'Do I Wanna Know?', "Don't", "Don't Let Me Down", 'Dope', 'Dope Beats', 'Download', 'Drake', 'Drank', 'Dreams', 'Drinking music', 'Drive', 'Drive Time', 'Driving', 'Drugs', 'Dubstep', 'Duetos', 'Dusk', 'EBM', 'EDC', 'EDEN', 'EDM', 'EDM 2015', 'ELECTRONICAS', 'ENO', 'Ear Candy', 'Easy Listening', 'Edge', 'Edgy', 'Edward Sharpe &amp; The Magnetic Zeros', 'Ehh', 'Electric', 'Electric Light Orchestra', 'Electric Love', 'Electro', 'Electro Chill', 'Electro Swing', 'Electronic', 'Electronic Music', 'Eli', 'Elisa', 'Elizabeth', 'Ellie', 'Elliot', 'Elliott', 'Elvis', 'Eminem', 'Emo', 'Emotional', 'End of Summer', 'Energize', 'English', 'Epic', 'Espanol', 'Everyday', 'Everything', 'Exercise', 'FALL 2013', 'FBGM', 'FF', 'FIREFLY 2016', 'FIRE🔥🔥🔥', 'FNAF', 'FOR EMMA', 'FUN', 'Fall', 'Fall 16', 'Fall 2014', 'Fall 2015', 'Fall 2016', 'Fall 2017', 'Fall Playlist', 'Fallout', 'Favorite Country', 'Favorite Songs', 'Favorite songs', 'Feel Good', 'Feel Good Friday', 'Feel Good Oldies', 'Feel Good Songs', 'Feel good', "Feelin' Myself", 'Feeling Good', 'Feeling myself', 'Feels', 'Female Singers', 'Female Vocals', 'Fiesta', 'Finesse', 'Fire', 'Firestone', 'Fix You', 'Flame', 'Flashback', 'Flawless', 'Florence + The Machine', 'Florida', 'Focus', 'Folk', 'For Megan', 'For You', 'For the Road', 'For the Soul', 'Französisch', 'French', 'Fresh', 'Friday :)', 'Friday afternoon...', 'From me to you', 'Frozen', 'Fun', 'Fun Mix', 'Fun mix', 'Funeral', 'Funky', 'GB', 'GET DOWN', 'GET PUMPED!!', 'GG', 'GOOD MUSIC', 'GOOD VIBES', 'GRAD', 'GUACAMOLE', 'GUILTY PLEASURES', 'Gabriel', 'Game Time', 'Game day', 'Gaming', 'Garage', 'Garage Rock', 'Gates', 'Get It', 'Get It!', 'Get Psyched Mix', 'Get pumped', 'Gina', 'Girl Power', 'Girls', 'Glee Cast', 'Go To', 'Go to', 'Gold Digger', 'Goo Goo Dolls', 'Good Beats', 'Good Country', 'Good Day', 'Good Music', 'Good Ole Country', 'Good Stuff', 'Good Times', 'Good Vibes', 'Good music', 'Good oldies', 'Good songs', 'Good stuff', 'Goodies', 'Gospel', 'Gospel Mix', 'Gracie', 'Grad party', 'Grandes', 'Greatest Hits', "Grey's Anatomy", 'Grind', 'Groove', 'Groovy', 'Guilty pleasure', 'Gym', 'Gym Mix', 'Gym Time', 'H2O', 'HALLOWEEN', 'HAPPY PLAYLIST', 'HARDCORE WORKOUT', 'HER', 'HIPHoP!', 'HITS', 'HOOD', 'HS', 'HSM', 'HYPE', 'HYPEBEAST', 'Halloween', 'Hang Out', 'Happiness', 'Happy', 'Happy :)', 'Happy Chill', 'Happy Christmas!', 'Happy Day', 'Happy Happy Happy', 'Happy Hardcore Top 100', 'Happy list', 'Happy mix', 'Hard Times', 'Hardcore', 'Harvest Moon', 'Hawaii', 'Heart Of Gold', 'Heart Strings', 'Heat', 'Heather', 'Heavy Metal', 'Helene', 'Help.', 'High', 'Hindi', 'Hip Hop/ R&amp;B', 'Hip hop', 'Hip-Hop', "Hips Don't Lie", 'Hits', 'Hockey', 'Holiday Music!', 'Holiday Party', 'Homesick', 'Homework', 'Hood', 'Hotel California', 'House', 'House Warming', 'Huapangos', 'Hungover', 'Hype', 'Hyper', 'Hyphy', 'I Put A Spell On You', 'I guess.', 'I like these songs', 'I love You', 'I workout!', "I'm sorry", 'IDGAF', 'II', 'INDIE', 'INDY', 'Ibiza 2017', 'Idk', 'Iii', 'Imagine Dragons', 'In The Car', 'In the Name of Love', 'Indie', 'Indie Chill', 'Indie Electro', 'Indie Mix', 'Indie Stuff', 'Inside Out: So Emotional', 'Inspiration', 'Inspire', 'Instrumental', 'Intense', 'Intimate', 'Into You', 'Intro', 'Isis', 'Island Time', 'Island Vibes', "It's Christmas Time!", 'Italy', 'Its a Trap', 'J Cole', "J'Adore", 'JAMS', 'JAZZ', 'JESUS', 'JOY', 'JP', 'JUNE', 'Jam', 'Jam Songs', 'Jamie', 'Jammers', 'Jammin', "Jammin'", 'Jams', 'Jamz', 'January 2016', 'Jazz', 'Jazz Mix', 'Jazzy', 'Jesse', 'Jesus music', "John's Playlist", 'Juli', 'Julion alvarez', 'July 2013', 'July 2017', 'July17', 'June', 'June 16', 'June 2014', "Just Chillin'", 'Justin', 'K pop', 'KAT', 'KIDZ', 'KILLA', 'KPOP', 'Kai', 'Karen', 'Kendall', 'Kendrick Lamar', 'Kevin', 'Kickball', 'Kickin it', "Kickin' it", 'Kid', 'Kid Cudi', 'Kids Playlist', 'Kill It!', "Killin' It", 'Kings', 'Klance', 'Kodak Black', 'Korean', 'Kpoop', 'Kpop', 'Kyle', 'L O V E', 'L$D', 'L.o.v.e', 'L1', 'LANY', 'LIT', 'LIT 🔥', 'LIT!!!!!!!', 'LITT', 'LM', 'LOCO', 'LONDON!!!', 'LUV', 'Ladies', 'Lady Jams', 'Lake', 'Las Buenas', 'Late', 'Latin', 'Latin Mix', 'Latin Trap', 'Latin Vibes', 'Latino', 'Legendary', 'Lent', 'Les Mis', 'Lets Dance !!!', 'Life', 'Lifting', 'Light', 'Lindsey Stirling', 'Line Dances', 'Linus', 'Listen', 'Lit', 'Lit AF', 'Lit af', 'Lit songs', 'Lithium', 'Littt', 'Litty', 'Lit🔥🔥', 'Local', 'Lollapalooza 2016', 'Long Car Rides', 'Lounging', 'Love', 'Love Music', 'Love On The Brain', 'Love love', 'Lu', 'Luke', 'Lulu', 'Lust', 'MDW', 'MEDITATION', 'MERICA', 'MH', 'MUSIC', 'MVP', 'MY FAV', 'MY STUFF ;)', 'Ma', 'Machine gun kelly', 'Mad', 'Mad Men', 'Madness', 'Main', 'Main Playlist', 'Marathon', 'March', 'March 2015', 'Marijuana', 'Marshall', 'Mashup', 'Matthew', 'Maui', 'May', "May '17", 'May 2015', 'May 2016', 'May Day', 'Me', 'Me Like', 'Mega Chill', 'Megan', 'Meh', 'Mellow', 'Mellow Fellow', 'Mellow.', 'Melting Pot', 'Memories', 'Memory Lane', 'Meow', 'Merengue', 'Metal', 'Metal rock', 'Mexico', 'Mia', 'Michelle', 'Mine', 'Misc', 'Mix Tape', 'Mixed', 'Mixtape', 'Modern Music', 'Modern music', 'Mom', "Mom's playlist", 'Mondays', 'Moo', 'Mood', 'Mood.', 'More Songs', 'Morning', 'Move', 'Movie Soundtracks', 'Movie music', 'Movie soundtracks', 'Mr. Brightside', 'Mum', 'Mumford &amp; Sons', 'Music', "Music From Baz Luhrmann's Film The Great Gatsby", 'Music.', 'Musica', 'Musica en español', 'Musical', 'Musicales', 'Musicals', 'Musik', 'My Favorites', 'My Heart', 'My High-Intensity Workout', 'My Hits', 'My Jams', 'My List', 'My Music', 'My Musics', 'My baby', 'My favorites', 'My favs', 'My happy place', 'My hits', 'My music', 'My stuff', 'Mya', 'NB', 'NC', 'NEW', 'NEW YEARS', 'NICOLE', 'NKOTB', 'NYE', 'Narcos', 'Nate', 'Neat', 'Neo', 'New', 'New 2', 'New Beginning.', 'New Finds', 'New Loves', 'New Music', 'New Playlist 4', 'New Rap', 'New School', 'New Songs', 'New Things', 'New Tunes', 'New Wave', 'New Years', 'New ish', 'New jams', 'New list', 'New music', 'New songs', 'New stuff', 'New year', 'New years', 'New2', 'NewNew', 'Newer stuff', 'Nice', 'Nico', 'No Limit', 'Noosa Tastiest Playlist', 'Norteñas', 'Not Rap', 'Nov 2017', 'Novedades', 'November 2016', 'Now', 'OD', 'ODESZA', 'OLD SKOOL', 'OOOUUU', 'Obsessions', 'October', 'October 2015', 'October 2017', 'Odd Future', 'Office', 'Offline', 'Oh Yeah!', 'Old', 'Old Country', 'Old Jams', 'Old Rock', 'Old School', 'Old School R&amp;B', 'Old School Vibes', 'Old Soul', 'Old music', 'Old school', 'Old songs', 'Oldies', 'Oldies But Goodies', 'Oldies but goodies', 'On My Mind', 'On the Run', 'Other Stuff', 'Others', 'Otoño', 'PAAARTY!', 'PARTAY', 'PARTY', 'PARTY 1', 'PARTY PEOPLE', 'PARTY PLAYLIST', 'PM', 'POP', 'POST', 'PREGAME', 'PS', 'PT', 'PUMPED', 'PURPLE', 'Padre', 'Paige', 'Paint', 'Painting', 'Paisa', 'Panda', 'Panic! At The Disco', 'Par-Tay!', 'Paradise', 'Part 1', 'Partay', 'Party', 'Party Country', 'Party Hardy', 'Party Mix', 'Party Playlist', 'Party Rock!!', 'Party Tunes', 'Party list', 'Party mix', 'Party time', 'Partyyyyyy', 'Paty', 'Peace', 'Peace Out', 'Pearl Jam', 'Personal Favorites', 'Phone', 'Piano', 'Piano Guys', 'Piano Music', 'Pilates', 'Pitbull', 'Pitch Perfect', 'Play it Forward', 'Play this at my funeral', 'PlayStation', 'Playlist', 'Playlist 7', 'Playlist name', 'Poker', 'Pole', 'Pool', 'Pool Party', 'Pop', 'Pop Hits', 'Pop en español', 'Pop songs', 'Pop/Chill', 'Practice', 'Praise', 'Praise Him', 'Prayer', 'Pregame', 'Pump', 'Pump It', 'Pump up', 'Pump up songs', 'Punk', 'Q2', 'Quirky', 'R &amp; B', 'R&amp;B', 'R&amp;B classics', 'R&amp;b', 'RANDOM FAVORITES', 'RAP', 'RAVE', 'RECENT', 'REPEAT', 'ROADTRIP', 'ROAR', 'ROCK🎸', 'RUNNIN', 'Rage', 'Rainy Dayz', 'Rancheras', 'Rando', 'Random', 'Random Tunes', 'Random!', 'Rap', 'Rap / hip hop', 'Rap Classics', 'Rap Jams', 'Rap Songs', 'Rap it up', 'Rap/Pop', 'Rap/hiphop', 'Rave', 'Real Rap', 'Recents', 'Reception', 'Reception!!', 'Red Bull Editions Coachella Playlist', 'Red Dirt', 'Regeton', 'Reggae', 'Reggae/Ska', 'Reggaeton', 'Reggeton', 'Relax', 'Relaxing', 'Relaxing Music', 'Remixes', 'Rent', 'Restore', 'Ride', 'RnB', 'Road', 'Road Music', 'Road Trip', 'Road Trip Mix', "Road Trippin'", 'Roadtrip', 'Rob', 'Rock', 'Rock alternativo', 'Rock en español', 'Rock jams', 'Rock mix', 'Rock music', 'Rock.....', 'Rock/Alt', 'Rolex', 'Rosa', 'Route 66', 'Run', 'Run Faster', 'Run Run Run', 'Run!!', 'Runaway', 'Running', 'Running 2', 'Running 2.0', 'Russ', 'Ry', 'SARAH', 'SB', 'SENIOR YEAR', "SEPTEMBER '17", 'SEPTEMBER 2017', 'SEX', 'SEX PLAYLIST', 'SLO', 'SPN', 'SPRANG', 'SPRING!', 'STUDY', 'SUMMER 2k17', 'SWAG', 'Sabina', 'Sad', 'Sad Songs', 'Sad songs', 'Sadness', 'Salsa', 'Salsa clasica', 'Sam', 'Samba', 'Same', 'Sara', 'Saturday', 'Saturn', 'Say My Name', "Say You Won't Let Go", 'Seduction', 'Sept 2016', 'September', 'September 2016', 'Sex', 'Sexual', 'Sexy', 'Shaky Knees', 'Shape of You', 'She Will Be Loved', 'Shleep', 'Shower', 'Shower Songs', 'Shower mix', 'Shower songs', 'Shredding', 'SiNgInG sOnGs', 'Sierreño', 'Silence', 'Ska', 'Ski', 'Skrt', 'Slapz', 'Slay', 'Sleep', 'Sleep Music', 'Sleepy', 'Sleep~', 'Slow', 'Slow Dance', 'Slow Jams', 'Slow Jamz', 'Slow Songs', 'Slow Stuff', 'Slow jams', 'Slow jamz', 'Smh', 'Smooth', 'Smooth Beats', 'Smooth Jazz', 'Snowboarding', 'Soft', 'Solid', 'Solitude', 'Somber', 'Songs I Like', 'Songs I Love', 'Songs that never fail to make white people beyond turnt', 'Songs to sing to', 'Sony VAIO - Back to School', "Sophie's Playlist", 'Sorry', 'Soul', 'Soul/Blues', 'Soulful', 'Soundtrack', 'Soundtracks', 'Southern Rock', 'SpRiNg BrEaK', 'Spanish', 'Spanish Music', 'Spanish Playlist', 'Spanish Rock', 'Spanish Vibes', 'Spanish songs', 'Spooky!', 'Spotify.Me', 'Spring', "Spring '16", 'Spring 2012', 'Spring 2015', 'Spring 2016', 'Spring Break', 'Spring16', 'Squad', 'Star Wars', 'Stay awake', 'Steph', 'Straight Fire', 'Straight Up', 'Study', 'Studying', 'Stuff', 'Stuff I like', 'Sugar', 'Suicide Squad', 'Summa', 'Summer', "Summer '16", 'Summer 14', 'Summer 15', 'Summer 17', 'Summer 2013', 'Summer 2014', 'Summer 2015', 'Summer 2016', 'Summer 2017', 'Summer 2K17', 'Summer Camp', 'Summer Chill', 'Summer Country', 'Summer Mix', 'Summer Party', 'Summer Playlist', 'Summer Workout', 'Summer country', 'Summer drives', 'Summer of Love', 'Summer of love', 'Summer playlist', 'Summer17', 'Summertime', 'Sunday', 'Sundays', 'Sunny', 'Sunny Days', 'Sunrise', 'Super chill', 'Surf', 'Svenskt', 'Swang', 'Sweat.It.Out.', 'Swing', 'TBT', 'THE Days', 'THE MIX', 'THE Playlist', 'THEATER', 'THROWBACKS :)', 'TOP', 'TRAP', 'TRIPPIn', 'TURNUP', 'TX', 'TX Country', 'T^T', 'Take Me Back', 'Take it Easy', 'Tame Impala', 'Tangled', 'Taylor', 'Taylor swift', 'Teen Angst', 'Teen Wolf', 'Tegan and Sara', 'Tejano', 'Tennessee', 'Texas Country', 'Texas Forever', 'That', 'That New New', 'The Best', 'The Cave', 'The Classics', 'The Drive', 'The Game', 'The Glitch Mob', 'The Good Stuff', 'The Greatest', 'The Ladies', 'The Mix', 'The PLayliSt', 'The Piano Guys', 'The Wave', 'The good stuff', 'Thinking', 'This', 'This Is What You Came For', 'Those days', 'ThrowBack Pop', 'Throwback', 'Throwback Thursday', 'Throwback playlist', 'Throwbackkkk', 'Throwbacks', 'Thug', 'Thuggin', 'Tierra caliente', 'Together', 'Tom', 'Tom Petty', 'Too Good', 'Top Hits', 'Top hits', 'Trance', 'Trap', 'Trap!', 'Traps', 'Traveling', 'TriP hOp', 'Trip', 'Tripping', 'Tropical', 'Tropicales', 'Try Me', 'Tune$', 'Tunes', 'TurnUp', 'Turnt', 'Twenty One Pilots', 'Twenty One Pilots — Heathens', 'Twenty one pilots', 'Two', 'Tú', 'Türkçe Slow', 'UNICORNS!!!', 'Ukulele', 'Up', 'Up Beat', 'Upbeat Country', 'Upbeat Songs', 'Urbano', 'VACATION', 'VIBE', 'VIRGINIA!!', 'VOODOO', 'Vallenato', 'Vampire Weekend', 'Various Artists – Majestic Casual - Chapter I', 'Vermont', 'Viaje', 'Vibe', 'Vibes', 'Vibez', 'Vibin', "Vibin'", 'Vinyasa', 'Volleyball', 'W O R K O U T', 'WIP', 'WM', 'WORK', 'WORKOUT', 'WORKOUT 2', 'WORKOUT!!', 'WORSHIP', 'WS', 'WaVeS', 'Wake Up', 'Walk Up Songs', 'Walking on Sunshine', 'Waltz', 'Wandering', 'Wanderlust', 'Warm Weather', 'Warmup', 'Warped Tour 2017', 'Wave', 'Waves', 'Way Back When', 'Way Up', 'Wedding', 'Wedding Cocktail Hour', 'Wedding Dance Music', 'Wedding Dance Party', 'Wedding Dinner Music', 'Wedding Playlist', 'Wedding Songs', 'Weekend', 'Weekly', 'Weird', 'Werk', 'Wes Anderson', 'West Coast Swing', 'Wet Dreamz', 'Whisky', 'Willie', 'Willie Nelson', 'Winter', 'Winter 2014', 'Winter 2016', 'Witchcraft', 'Work', 'Work Music', 'Work Out', 'Work in progress', 'Work list', "Workin'", 'Working', 'Working Out', 'Workout', 'Workout music', 'Workout!', 'Workout2', 'Worship', 'Worship Music', 'Worship songs', 'Writing Playlist', 'XOXO', 'XXXMas', 'Xmas', 'YEET', 'YES', 'YOU', 'Yacht Rock', 'Yas', 'Yeah', 'Yeet', 'Yellow', 'Yellow Claw', 'Yes', 'Yoga', 'You already know', 'You and me', 'You&amp;Me', 'Young Dumb &amp; Broke', 'Youtubers', 'Yuridia', 'Zombies', 'Zoned', 'Zumba', 'Zzzzzzzz......', 'a good playlist', 'a playlist', 'abby', 'acoustic', 'ahh', 'airplane mode', 'ale', 'alex', 'alexa', 'alive', 'all songs', 'alt', 'always', 'angst', 'arizona', 'art class', 'ashley', 'atmosphere', 'audi', 'august 2015', 'aye', 'bachata', 'back to school', 'background noise', 'bae', 'bailamos', 'ballads', 'baller', 'band songs', 'bang bang.', 'basic', 'bb', 'beach', 'beachy', 'beats', 'beautiful', 'bed time', 'bedroom', 'before my time', 'believe', 'best', 'best christmas', 'best songs', 'billy', 'bird', 'blue grass', 'bluegrass', 'boa', 'boat', 'boi', 'bomb', 'booze cruise', 'bops', 'bored', 'boris', 'boujee', 'bounce', 'brad paisley', 'breathe', 'bridal shower', 'broadway', 'bruh', 'bruno mars', 'bsb', 'bump', 'bumpin', 'bumps', 'cake', 'california', 'calm', 'cameron', 'camp', 'can i kick it?', 'car', 'car jamz', 'car playlist', 'car ride', 'car rides', 'car tunes', 'carpe diem', 'carride', 'cd', 'charlie', 'cheese', 'childhood', 'chill', 'chill beats', 'chill edm', 'chill jams', 'chill out', 'chill songs', 'chill time', 'chill vibes', 'chillen', 'chillin', 'chillin like a villain', 'chilll', 'chilllllllll', 'chillout', 'chinese', 'christian', 'christian.', 'christmas', 'christmas music', 'church songs', 'cinematic', 'classic', 'classic rock', 'classic.', 'classical', 'classico', 'classics', 'cleaning', 'club', 'coachella', 'cocktail hour', 'coffee', 'cole', 'college', 'cool', 'cool beans', 'cool songs', 'country', 'country 2017', 'country favorites', 'country favs', 'crooners', 'crunk', 'cumbia', 'current', 'currently', 'da best', 'dad', 'dad jams', 'dad songs', 'dads', 'dads playlist', 'daily mix', 'damn', 'dance', 'dance it out', 'dance yrself clean', 'dank memes', 'dat new new', 'day to day', 'death', 'december', 'deep', 'different', 'dinner playlist', 'discovered', 'disney', 'disney bops', 'div', 'doo wop', 'down in the dumps', 'drank', 'driving music', 'dubstep', "early 2000's", 'ease ~', 'eclipse', 'eh', 'electro', 'electronic', 'elevator music', 'emo', 'emo af', 'empty', 'english', 'ep', 'erika', 'erin', 'escape', 'escuela', 'essentials', 'eurotrip', 'everything', 'explicit', 'explore', 'f a l l', 'fall', "fall '17", 'fall 15', 'fall 2015', 'fall 2016', 'fall 2017', 'fallen', 'family', 'fav rap :)', 'fave', 'favorite worship', 'favs rn', "february '17", 'feel good', 'feel good music.', 'feelings', 'feels', 'feelz', 'fifty shades darker', 'fire', 'fireside', 'flow', 'folk yeah', 'folky', 'for you', 'frenchy', 'fuego', 'fun', 'funk', 'funky', 'gabrielle', 'game time', 'get down', 'getting ready', 'ghana', 'ghetto', 'go to', 'go-to', 'golden', 'goldie', 'good', 'good good', 'good music', 'good music :)', 'good stuff', 'good times', 'good vibes', 'goodvibes', 'gopro', 'greek', 'grindin', 'groovy', 'guilty', 'guilty pleasure', 'guitar.', 'gym', 'gym list', 'ha', 'halcyon', 'halloweenie', 'happy', 'happy chill', 'hawaii', 'hayley', 'headphones', 'heaven', 'heavy', 'hehe', 'hey', 'hick', 'high', 'high school', 'hip hop', 'hitS', 'hits', 'hmm', 'hmmm', 'hoco', 'hoe anthems', 'holiday cheer', 'house', 'housewarming', 'howdy', 'hsm', 'humble.', 'hw', 'hyfr', 'hype', 'idek', 'idk man', 'idk yet', 'iii', 'im', 'in my feels', 'indie rock', 'inspiring', 'international', 'irish', 'issa playlist', 'its lit', 'jack &amp; jack', 'jammin', 'jams', 'jamz', 'jamzzz', 'jan 2015', 'january 17', 'jazzy', 'jeep', 'jens', 'jessie', 'jesus jams', 'jewel', 'jm', 'joSe :)', 'joshua tree', 'juicy', 'julie', 'july', 'july 2016', 'june', 'june 2017', 'just chillin', 'justin', 'karaoke.', 'kareoke', 'kayla', 'kids songs', 'killin it', 'kitchen', 'korean', 'kpop', 'l o v e', 'lake', 'latin', 'latin mix', 'latino', 'lean', 'leggo', 'lib', 'lift', 'like', 'lit', 'lit songs', 'litty', 'litty!', 'lit🔥', 'love', 'love love love', 'loveee', 'lovelovelove', 'lowkey', 'lsd', 'lu', 'maY!', 'madison', 'main playlist', 'mar', "march '17", 'mat', 'mayer', 'mb', 'meditate', 'meh', 'melancholy', 'mello', 'mellow', 'melodies', 'memes', 'merp', 'metalcore', 'mhm', 'migos', 'miley', 'mine', 'misc.', 'mix', 'mix 1', 'mixtape', 'mixx', 'mmm', 'mmm.', 'mmmm//', 'modern rock', 'mom!', 'montage', 'mood', 'mood music', "mornin'", 'morning', 'morning.', 'most wonderful time of the year', 'motivation', 'motivational', 'motown', 'mumford', 'music', 'musica', 'musicals', 'muzic', 'my', 'my country', 'my favorite songs', 'my heart', 'my songs', 'nashville', 'nc', 'neo soul', 'new', 'new alt', 'new beginnings.', 'new new', 'new new new !', 'new stuff', 'nice and easy', 'nick.', 'nite', 'no', 'no lyrics', 'nostalgia', 'nostalgic', 'now', 'number one', 'ol skool', 'old', 'old bops', 'old but good', 'old country', 'old jams', 'old people', 'old school', 'old school hip hop', 'old songs', 'old soul', 'old stuff', 'older songs', 'oldies', 'oldies but goodies', 'oldiess', 'oof', 'other', 'ouch', 'outside', 'papa', 'para bailar', 'partay', 'party', 'party 2', 'party music', 'party people', 'party playlist', 'party?', 'peter', 'petrichor', 'pg', 'picks', 'playlist', 'pole', 'poop', 'pop', 'pop favorites', 'post rock', 'pow pow', 'pr', 'pregame', 'pump', 'pump up', 'pumped', 'punk', 'quality', 'queen', 'queue', 'quiet', 'quiet time', 'quinn', 'rad', 'rage', 'random', 'random songs', 'randoms', 'rap', 'rap 1', 'rap god', 'rap mix', 'rap playlist', 'rap stuff', 'rap stuff.', 'rap workout', 'rapp', 'ratchet', 'raw', 'rawr', 'real talk', 'recommendations !!', 'recovery', 'regaton', 'reggae', 'reggaeton', 'relax', 'relaxation', 'relaxed', 'remix', 'ride', 'riding music', 'riley', 'rnb_hiphop', 'road trip', 'road trip:)', 'roadtrip', 'roadtrip 🚗', 'roadtrippin', 'rock', 'rock songs', 'roma', 'roman', 'roots', 'run', 'run 2', 'run it', 'running', 'running 3', 's o u l', 'sad', 'sad :(', 'sad boi', 'sad song', 'sad times', 'saturday morning', 'savage', 'sb2k17', 'schleep', 'scott', 'september', 'september 17', 'serenity', 'session', 'setlist', 'settle down', 'sex', 'sexy time', 'shower', 'shut up and dance', 'sia', 'sick tunes', 'siesta', 'singalongs', 'sj', 'skrt skrt', 'sleep', 'sleep.', 'sleeps', 'sleepy head', 'sleepytime', 'slow', 'slow hands', 'slowmotion', 'smh', 'smiles :)', 'smooth', 'smooth jams', 'snowboarding', 'soft', 'songs i like', 'songs that make me think of you', 'songs to dance to', 'songs to sing in the shower', 'songs to sing to', 'songssss', 'soul', 'soul train', 'sound', 'sound of silence', 'southern rock', 'space jams', 'spanish', 'spanish jams', 'spanish playlist', 'spin', 'spotify and chill', "spring '17", 'spring 16', 'spring 17', 'spring/summer 2017', 'stay woke', 'storm', 'stream', 'study', 'study time', 'study!', 'studying music', 'stuff', 'sum17', 'summa', 'summa summa', 'summah', 'summer', "summer '17", 'summer 15', 'summer 16', "summer 16'", 'summer 17', 'summer 2015', 'summer 2016', 'summer 2017', 'summer 2k17', 'summer country', 'summer music', 'summer playlist', 'summer sixteen', 'summer tunes', 'summer16', 'sunday', 'sunset', 'superman.', 'sweet dreams', 'tURNuP', 'tailgate', 'take me back', 'taylor swift', 'tb', 'tbd', 'tbt', 'tears.', 'teenage angst', 'thai', 'that good good', 'the feels', 'the goods', 'the mix', 'the office', 'this', 'thoughts', 'three', 'throw backs', 'throwback', 'throwback hits', 'throwbackk', 'throwbacks', 'throwbacksss', 'timeless.', 'today', 'tom', 'top 15', 'top down', 'trap', 'trap house', 'trap rap', 'trending', 'trill', 'tuneZ', 'turn up', 'twenty sixteen', 'uhhhh', 'unknown', 'upbeat', 'us', 'vampire weekend', 'vaporwave', 'vibe', 'vibes', 'vibin', "vibin'", 'vibrations', 'volleyball playlist', 'vroom', 'w o r k o u t', 'wake up', 'warming up', 'warrior', 'washed out', 'wedding', 'wedding playlist', 'wedding songs', 'weekend', 'weeknd', 'wes', 'whatever', 'white girl music', 'will', 'william', 'winter', "winter '17", 'winter 2015', 'woo', 'woohoo', 'work', 'work music', 'work out', 'workout', 'workout 2', 'workout jamz', 'workout mix', 'worship', 'worship songs', 'wow', 'wrap', 'wrk', 'xXx', 'xmas party', 'xx', 'ya', 'yaaas', 'yas', 'yay', 'ye', 'yea', 'yee', 'yee haw.', 'yeet', 'yep', 'yes', 'yo', 'yoga', 'yoo', 'young folks', 'youtubers', 'yuh', '~Rando~', '☀️', '☀️☀️☀️', '☁️☁️☁️', '♡♡♡', '♥️', '⚡️', '⚡️⚡️⚡️', '⚽️', '✔️', '✝️', '❄️', '❌❌❌', '❤❤❤', '❤️', '����������', '🇲🇽🇲🇽🇲🇽', '🌈🌈🌈', '🎵🎵', '👌👌👌', '👑👑👑', '💁🏼', '💃🏽', '💗💗💗', '💛💛', '💦💦💦', '💯💯💯', '💸💸', '🔥🔥', '🔥🔥🔥', '🔥🔥🔥🔥', '🖕🏻', '😈😈😈', '😍❤️', '😍😍', '😍😍😍', '😏😏😏', '😭😭', '😴😴', '😻😻', '🙏🏾', '🚗💨', '🤘🏼', '🤤🤤'])</code></pre>
+</div>
+</div>
+</section>
+<section id="altering-and-sorting" class="level2">
+<h2 class="anchored" data-anchor-id="altering-and-sorting">Altering and Sorting</h2>
+<p>We can add new variables by transforming existing variables. Additionally, we can sort our data with sort_values()</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spotify[<span class="st">"duration_min"</span>] <span class="op">=</span> spotify[<span class="st">'duration_ms'</span>]<span class="op">/</span><span class="dv">60000</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> spotify.sort_values(<span class="st">'duration_min'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#this sorts the songs by duration in minutes in descending order</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="setting-an-index-and-dropping-observations" class="level2">
+<h2 class="anchored" data-anchor-id="setting-an-index-and-dropping-observations">Setting an Index and Dropping Observations</h2>
+<p>From before, we can see that the highest duration “songs” are all in the playlist Audiobooks. Since I would like to see what else has a high duration, I can set the playlist name as the index and drop the Audiobooks playlist from my DataFrame.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>no_audiobooks <span class="op">=</span> (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    length</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .set_index(<span class="st">"playlist_name"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"Audiobooks"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>no_audiobooks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">pid</th>
+<th data-quarto-table-cell-role="th">pos</th>
+<th data-quarto-table-cell-role="th">artist_name</th>
+<th data-quarto-table-cell-role="th">track_name</th>
+<th data-quarto-table-cell-role="th">duration_ms</th>
+<th data-quarto-table-cell-role="th">album_name</th>
+<th data-quarto-table-cell-role="th">duration_min</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">playlist_name</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Linus</td>
+<td>999399</td>
+<td>4</td>
+<td>Sound Dreamer</td>
+<td>Grey Noise (90 Minutes) [For Colic, Fussy, Res...</td>
+<td>5403559</td>
+<td>Baby Sleep Solution (White, Red, Pink, Blue, G...</td>
+<td>90.059317</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Afrobeats</td>
+<td>1944</td>
+<td>125</td>
+<td>Best of 9JA</td>
+<td>9JA Jamz Vol.6 - 6</td>
+<td>4788938</td>
+<td>9JA Jamz Vol.6</td>
+<td>79.815633</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Lust</td>
+<td>1790</td>
+<td>7</td>
+<td>Late Night Tales</td>
+<td>Bonobo Late Night Tales Continuous Mix</td>
+<td>4497994</td>
+<td>Late Night Tales - Bonobo</td>
+<td>74.966567</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Garage</td>
+<td>1791</td>
+<td>158</td>
+<td>Grandmaster Flash</td>
+<td>Salsoul Jam 2000 - Continuous Mix</td>
+<td>3867600</td>
+<td>Grandmaster Flash Presents: Salsoul Jam 2000</td>
+<td>64.460000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ENO</td>
+<td>999334</td>
+<td>26</td>
+<td>Brian Eno</td>
+<td>Thursday Afternoon - 2005 Digital Remaster</td>
+<td>3650800</td>
+<td>Thursday Afternoon</td>
+<td>60.846667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ELECTRONICAS</td>
+<td>877</td>
+<td>29</td>
+<td>Bass Modulators</td>
+<td>Oxygen - Radio Edit</td>
+<td>186</td>
+<td>Oxygen</td>
+<td>0.003100</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2016</td>
+<td>843</td>
+<td>178</td>
+<td>Marty Grimes</td>
+<td>The Famm</td>
+<td>0</td>
+<td>The Famm</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Hood</td>
+<td>1423</td>
+<td>176</td>
+<td>Marty Grimes</td>
+<td>The Famm</td>
+<td>0</td>
+<td>The Famm</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Fall 2015</td>
+<td>943</td>
+<td>30</td>
+<td>Tigers in the Sky</td>
+<td>Paris</td>
+<td>0</td>
+<td>Golden Lights</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">chill time</td>
+<td>693</td>
+<td>67</td>
+<td>Marty Grimes</td>
+<td>The Famm</td>
+<td>0</td>
+<td>The Famm</td>
+<td>0.000000</td>
+</tr>
+</tbody>
+</table>
+
+<p>197915 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<p>Similarly, we can drop duplicate values with drop_duplicates(). Below I have found all unique songs under two minutes (using query ()) and have sorted them in descending order.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>shortsongs <span class="op">=</span> spotify.drop_duplicates(subset <span class="op">=</span> [<span class="st">"track_name"</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>shortsongs2 <span class="op">=</span> (</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    shortsongs</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    .query(<span class="st">"duration_min &lt; 2 "</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="st">"duration_min"</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>shortsongs2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">pid</th>
+<th data-quarto-table-cell-role="th">playlist_name</th>
+<th data-quarto-table-cell-role="th">pos</th>
+<th data-quarto-table-cell-role="th">artist_name</th>
+<th data-quarto-table-cell-role="th">track_name</th>
+<th data-quarto-table-cell-role="th">duration_ms</th>
+<th data-quarto-table-cell-role="th">album_name</th>
+<th data-quarto-table-cell-role="th">duration_min</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">54018</td>
+<td>811</td>
+<td>musicals</td>
+<td>25</td>
+<td>Anne Hathaway</td>
+<td>Fantine’s Arrest</td>
+<td>119946</td>
+<td>Les Misérables: The Motion Picture Soundtrack ...</td>
+<td>1.999100</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">30914</td>
+<td>465</td>
+<td>Punk</td>
+<td>74</td>
+<td>The Lawrence Arms</td>
+<td>The Devil's Takin' Names</td>
+<td>119880</td>
+<td>Oh! Calcutta!</td>
+<td>1.998000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">146624</td>
+<td>999184</td>
+<td>Baby Driver</td>
+<td>8</td>
+<td>The Dave Brubeck Quartet</td>
+<td>Unsquare Dance</td>
+<td>119866</td>
+<td>Time Further Out</td>
+<td>1.997767</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">161498</td>
+<td>999433</td>
+<td>Hardcore</td>
+<td>69</td>
+<td>Cold World</td>
+<td>The Games That People Play</td>
+<td>119826</td>
+<td>Dedicated To Babies Who Came Feet First</td>
+<td>1.997100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30940</td>
+<td>465</td>
+<td>Punk</td>
+<td>100</td>
+<td>Misfits</td>
+<td>Last Caress</td>
+<td>119826</td>
+<td>Collection 2</td>
+<td>1.997100</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">86034</td>
+<td>1288</td>
+<td>new alt</td>
+<td>92</td>
+<td>alt-J</td>
+<td>Deadcrush</td>
+<td>231</td>
+<td>RELAXER</td>
+<td>0.003850</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">176029</td>
+<td>999652</td>
+<td>party</td>
+<td>80</td>
+<td>Admiral C4C</td>
+<td>Drop the Boom</td>
+<td>218</td>
+<td>Drop the Boom</td>
+<td>0.003633</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">936</td>
+<td>16</td>
+<td>slow hands</td>
+<td>84</td>
+<td>alt-J</td>
+<td>In Cold Blood</td>
+<td>206</td>
+<td>RELAXER</td>
+<td>0.003433</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">59093</td>
+<td>877</td>
+<td>ELECTRONICAS</td>
+<td>29</td>
+<td>Bass Modulators</td>
+<td>Oxygen - Radio Edit</td>
+<td>186</td>
+<td>Oxygen</td>
+<td>0.003100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">46663</td>
+<td>693</td>
+<td>chill time</td>
+<td>67</td>
+<td>Marty Grimes</td>
+<td>The Famm</td>
+<td>0</td>
+<td>The Famm</td>
+<td>0.000000</td>
+</tr>
+</tbody>
+</table>
+
+<p>1970 rows × 8 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="counting" class="level2">
+<h2 class="anchored" data-anchor-id="counting">Counting</h2>
+<p>We can use value_counts() to count the number of times a variable appears in a column (when specified)</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>spotify.value_counts(<span class="st">"album_name"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>spotify.value_counts(<span class="st">"artist_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>artist_name
+Drake             2715
+Kanye West        1065
+Kendrick Lamar    1035
+Rihanna            915
+The Weeknd         913
+                  ... 
+Kandia               1
+Kane Strang          1
+Kano                 1
+Kao Bay Bay          1
+터보(Turbo)            1
+Name: count, Length: 18866, dtype: int64</code></pre>
+</div>
+</div>
+<p>We can see that the top artist is Drake&gt; However this could be because some of his songs appear multiple times across different playlists. To see if this is the case, we can find the number of unique songs by each artist.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>uniquesongs <span class="op">=</span> spotify.drop_duplicates(subset <span class="op">=</span> [<span class="st">"track_name"</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>uniquesongs.value_counts(<span class="st">"artist_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>artist_name
+The Beatles                 235
+Glee Cast                   227
+Pearl Jam                   156
+Electric Light Orchestra    150
+Brian Eno                   144
+                           ... 
+Jonny Craig                   1
+Jonny Lang                    1
+Jons                          1
+Jonz                          1
+터보(Turbo)                     1
+Name: count, Length: 16905, dtype: int64</code></pre>
+</div>
+</div>
+<p>From this, we actually see that The Beatles have the most unique songs across all of the playlists.</p>
+</section>
+<section id="analyzing-a-specific-artist" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-a-specific-artist">Analyzing a Specific Artist</h2>
+<p>Combining all of these methods, we can observe a specific artist within this DataFrame.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>TS <span class="op">=</span> (</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    spotify</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    .set_index(<span class="st">"artist_name"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .loc[<span class="st">"Taylor Swift"</span>]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>TS</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#finding all the songs made by Taylor Swift</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>TS[<span class="st">"track_name"</span>].value_counts()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>TS[<span class="st">"album_name"</span>].value_counts()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#how many times each of her tracks/albums appear</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>uniquetaylor <span class="op">=</span> TS.drop_duplicates(subset <span class="op">=</span> (<span class="st">"track_name"</span>))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>uniquetaylor</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#len(uniquetaylor)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#how many Taylor Swift songs appear (63)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">pid</th>
+<th data-quarto-table-cell-role="th">playlist_name</th>
+<th data-quarto-table-cell-role="th">pos</th>
+<th data-quarto-table-cell-role="th">track_name</th>
+<th data-quarto-table-cell-role="th">duration_ms</th>
+<th data-quarto-table-cell-role="th">album_name</th>
+<th data-quarto-table-cell-role="th">duration_min</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">artist_name</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>29</td>
+<td>groovy</td>
+<td>33</td>
+<td>Look What You Made Me Do</td>
+<td>211859</td>
+<td>Look What You Made Me Do</td>
+<td>3.530983</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>44</td>
+<td>taylor swift</td>
+<td>0</td>
+<td>Safe &amp; Sound - from The Hunger Games Soundtrack</td>
+<td>240066</td>
+<td>The Hunger Games: Songs From District 12 And B...</td>
+<td>4.001100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>44</td>
+<td>taylor swift</td>
+<td>2</td>
+<td>Crazier</td>
+<td>191946</td>
+<td>Hannah Montana The Movie</td>
+<td>3.199100</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>64</td>
+<td>Elizabeth</td>
+<td>49</td>
+<td>Eyes Open</td>
+<td>244586</td>
+<td>The Hunger Games: Songs From District 12 And B...</td>
+<td>4.076433</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>134</td>
+<td>Rap/Pop</td>
+<td>77</td>
+<td>Shake It Off</td>
+<td>219200</td>
+<td>1989</td>
+<td>3.653333</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>999531</td>
+<td>throwback</td>
+<td>119</td>
+<td>Out Of The Woods</td>
+<td>235800</td>
+<td>1989</td>
+<td>3.930000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>999831</td>
+<td>Road Music</td>
+<td>48</td>
+<td>All You Had to Do Was Stay</td>
+<td>193000</td>
+<td>1989</td>
+<td>3.216667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>999831</td>
+<td>Road Music</td>
+<td>49</td>
+<td>How You Get the Girl</td>
+<td>247000</td>
+<td>1989</td>
+<td>4.116667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>999861</td>
+<td>&lt;333</td>
+<td>77</td>
+<td>Mine</td>
+<td>230706</td>
+<td>Speak Now</td>
+<td>3.845100</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Taylor Swift</td>
+<td>999965</td>
+<td>feels</td>
+<td>121</td>
+<td>Last Kiss</td>
+<td>367133</td>
+<td>Speak Now</td>
+<td>6.118883</td>
+</tr>
+</tbody>
+</table>
+
+<p>63 rows × 7 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Evidently, a lot can be done to analyze DataFrames. This was just a short introduction to the many methods used in data analysis.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script type="text/javascript" src="links.js"></script>
@@ -518,7 +1141,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Powered with GitHub and Quarto<br>© Miranda Bartkowiak, 2023</div>
+    <div class="nav-footer-center">Powered with GitHub and Quarto<br>© Miranda Bartkowiak, 2024</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
